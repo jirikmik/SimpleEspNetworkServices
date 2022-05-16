@@ -26,9 +26,9 @@
 #include <PubSubClient.h>
 #endif
 
-#ifndef APPCONFIG_H
-#include <appconfig.h>
-#endif
+//#ifndef APPCONFIG_H
+//#include "appconfig.h"
+//#endif
 
 #define NETWORKING_LIB_VERSION 2022051301
 
