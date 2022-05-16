@@ -18,7 +18,7 @@ void SimpleEspNetworkServices::begin() {
     startMqtt();
     #endif
 }
-
+#ifdef NETWORK_HOSTNAME
 void SimpleEspNetworkServices::startWifi() {
 
 
@@ -92,6 +92,9 @@ void SimpleEspNetworkServices::startWifi() {
 
 
 }
+#endif
+
+#ifdef NETWORK_HOSTNAME
 #ifndef NETWORK_DISABLE_OTA 
 void SimpleEspNetworkServices::startOta() {
 
@@ -144,6 +147,9 @@ void SimpleEspNetworkServices::startOta() {
 
 }
 #endif
+#endif
+
+#ifdef NETWORK_MQTT_SERVER
 #ifndef NETWORK_DISABLE_MQTT 
 void SimpleEspNetworkServices::startMqtt() {
     
@@ -191,6 +197,8 @@ void SimpleEspNetworkServices::startMqtt() {
     }
 }
 #endif
+#endif
+
 void SimpleEspNetworkServices::loop() {
     if (!isWifiConnected()) {
         Serial.println("Znovupřipojuji WiFi");
