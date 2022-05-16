@@ -20,7 +20,7 @@
     "dependencies": {
       "knolleary/PubSubClient": "2.8",
       "espressif/arduino-esp32": "*",
-      "arduino-libraries/WiFi": "*",
+      "espressif/WiFi": "*",
       "arduino-libraries/SPI": "*"
     },
     "frameworks": "arduino",
