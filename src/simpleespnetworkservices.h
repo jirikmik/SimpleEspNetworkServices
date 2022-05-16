@@ -32,7 +32,7 @@
 
 #define NETWORKING_LIB_VERSION 2022051301
 
-class Networking {
+class SimpleEspNetworkServices {
 
 public:
 	Networking();
