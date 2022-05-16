@@ -1,10 +1,7 @@
 #include "simpleespnetworkservices.h"
-//#include "appconfig.h"
 
 WiFiMulti wifiMulti;
 
-//WiFiClient espClient;
-//PubSubClient pubSubClient(espClient);
 
 SimpleEspNetworkServices::SimpleEspNetworkServices() {
 }
@@ -155,10 +152,7 @@ void SimpleEspNetworkServices::startMqtt() {
     
     pubSubClient.setClient(espClient);
     pubSubClient.setServer(NETWORK_MQTT_SERVER, NETWORK_MQTT_PORT);
-    //pubSubClient.setCallback()
     
-    //pubSubClient.setCallback(mqttCallback);
-    //pubSubClient.setSocketTimeout(30);
 
     uint8_t connection_counter = 0;
     while (!pubSubClient.connected()) {
@@ -178,22 +172,12 @@ void SimpleEspNetworkServices::startMqtt() {
 
             connection_counter++;
             if (connection_counter >= 5) {
-            //preferences.begin("status", false);
-            //preferences.putUInt("r_reason", 2);
-            //preferences.end();
-            //common.savePrevRebootReason(2);
                 ESP.restart();
             }
 
             delay(1000);
         }
 
-        //for (int i; i<sizeof(MQTT_TOPICS))
-
-        //pubSubClient.subscribe("netservices");
-        //pubSubClient.subscribe();
-        //Serial.println(pubSubClient.state());
-        
     }
 }
 #endif
@@ -214,9 +198,6 @@ void SimpleEspNetworkServices::loop() {
     pubSubClient.loop();
     #endif
     
-    //Serial.println(pubSubClient.state());
-    
-    //Serial.println(pubSubClient.lastOutActivity);
 }
 
 bool SimpleEspNetworkServices::isWifiConnected() {
@@ -263,11 +244,4 @@ void SimpleEspNetworkServices::mqttCallback(char *topic, byte *payload, unsigned
   Serial.println();
   Serial.println("-----------------------");
 
-  /*
-  String topic_string = String(topic);
-
-  if (topic_string == "176/studna_spodni/switch/ventil1") {
-    ventilSwitch1();
-  }
-  */
 }
