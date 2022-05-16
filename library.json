@@ -22,6 +22,7 @@
       "espressif/WiFi": "*",
       "espressif/ESPmDNS": "*",
       "espressif/ArduinoOTA": "*",
+      "espressif/Update": "*",
       "arduino-libraries/SPI": "*"
     },
     "frameworks": "arduino",
