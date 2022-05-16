@@ -19,8 +19,8 @@
     "license": "MIT",
     "dependencies": {
       "knolleary/PubSubClient": "2.8",
-      "espressif/arduino-esp32": "*",
       "espressif/WiFi": "*",
+      "espressif/ESPmDNS": "*",
       "arduino-libraries/SPI": "*"
     },
     "frameworks": "arduino",
