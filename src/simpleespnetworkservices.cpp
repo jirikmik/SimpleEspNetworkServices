@@ -6,7 +6,7 @@ WiFiMulti wifiMulti;
 //WiFiClient espClient;
 //PubSubClient pubSubClient(espClient);
 
-SimpleEspNetworkServices::Networking() {
+SimpleEspNetworkServices::SimpleEspNetworkServices() {
 }
 
 void SimpleEspNetworkServices::begin() {
