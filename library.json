@@ -21,6 +21,7 @@
       "knolleary/PubSubClient": "2.8",
       "espressif/WiFi": "*",
       "espressif/ESPmDNS": "*",
+      "espressif/ArduinoOTA": "*",
       "arduino-libraries/SPI": "*"
     },
     "frameworks": "arduino",
