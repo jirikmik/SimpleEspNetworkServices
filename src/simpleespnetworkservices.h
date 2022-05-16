@@ -35,7 +35,7 @@
 class SimpleEspNetworkServices {
 
 public:
-	Networking();
+	SimpleEspNetworkServices();
     void begin();
     void loop();
     bool isWifiConnected();
