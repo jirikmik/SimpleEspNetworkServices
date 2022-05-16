@@ -27,7 +27,7 @@
 #endif
 
 #ifndef APPCONFIG_H
-#include "/src/appconfig.h"
+#include <appconfig.h>
 #endif
 
 #define NETWORKING_LIB_VERSION 2022051301
