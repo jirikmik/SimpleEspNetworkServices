@@ -1,16 +1,14 @@
 #include <Arduino.h>
-#include "appconfig.h"
-#include "networking.h"
+#include "SimpleEspNetworkServices.h"
 
 void mqttCallback(char *topic, byte *payload, unsigned int length);
 
-Networking networking;
+SimpleEspNetworkServices networking;
 
 
 void setup() {
 
   Serial.begin(9600);
-  
   
   networking.begin();
   networking.mqttSubscribe("some/topic");
