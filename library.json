@@ -19,7 +19,9 @@
     "license": "MIT",
     "dependencies": {
       "knolleary/PubSubClient": "2.8",
-      "arduino-libraries/WiFi": "*"
+      "arduino-libraries/WiFi": "*",
+      "arduino-libraries/SPI": "*",
+      "arduino-libraries/WifiMulti": "*"
     },
     "frameworks": "*",
     "platforms": "*"
