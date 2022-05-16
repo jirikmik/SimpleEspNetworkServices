@@ -1,0 +1,25 @@
+{
+    "name": "SimpleEspNetworkServices",
+    "version": "1.0.0",
+    "description": "Common used network services used in from-scratch apps",
+    "keywords": "wifi, mqtt, ota",
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/jirikmik/SimpleEspNetworkServices.git"
+    },
+    "authors":
+    [
+      {
+        "name": "Jiri Mikulec",
+        "email": "jiri@mikulec.name",
+        "maintainer": true
+      }
+    ],
+    "license": "MIT",
+    "dependencies": {
+      "knolleary/PubSubClient": "2.8"
+    },
+    "frameworks": "*",
+    "platforms": "*"
+  }
