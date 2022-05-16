@@ -58,5 +58,4 @@ private:
     void static mqttCallback(char *topic, byte *payload, unsigned int length);
 };
 
-
 #endif

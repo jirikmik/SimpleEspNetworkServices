@@ -2,7 +2,6 @@
 
 WiFiMulti wifiMulti;
 
-
 SimpleEspNetworkServices::SimpleEspNetworkServices() {
 }
 
