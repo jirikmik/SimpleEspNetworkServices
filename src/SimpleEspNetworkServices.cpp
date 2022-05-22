@@ -3,7 +3,7 @@
 WiFiMulti wifiMulti;
 
 SimpleEspNetworkServices::SimpleEspNetworkServices() {
-    hostname = NETWORK_HOSTNAME;
+    this->hostname = NETWORK_HOSTNAME;
 }
 
 void SimpleEspNetworkServices::begin() {
