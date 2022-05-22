@@ -3,6 +3,7 @@
 WiFiMulti wifiMulti;
 
 SimpleEspNetworkServices::SimpleEspNetworkServices() {
+    hostname = NETWORK_HOSTNAME;
 }
 
 void SimpleEspNetworkServices::begin() {
@@ -14,6 +15,10 @@ void SimpleEspNetworkServices::begin() {
     startMqtt();
     #endif
 }
+
+void SimpleEspNetworkServices::setHostname(const char* hostname) {
+    this->hostname = hostname;
+}
 #ifdef NETWORK_HOSTNAME
 void SimpleEspNetworkServices::startWifi() {
 
@@ -21,6 +26,7 @@ void SimpleEspNetworkServices::startWifi() {
     Serial.print("Pripojuji k WiFi ... ");
     WiFi.setAutoReconnect(true);
     WiFi.setHostname(NETWORK_HOSTNAME);
+    
     WiFi.enableSTA(true);
     WiFi.mode(WIFI_STA);
 

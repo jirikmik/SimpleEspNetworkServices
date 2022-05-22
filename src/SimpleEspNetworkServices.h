@@ -34,6 +34,8 @@ public:
     void loop();
     bool isWifiConnected();
     IPAddress getIpAddress();
+    void setHostname(const char* hostname);
+    const char* getHostname();
     #ifndef NETWORK_DISABLE_MQTT 
     PubSubClient getPubSubClient();
     void setMqttCallback(MQTT_CALLBACK_SIGNATURE);
@@ -42,6 +44,7 @@ public:
     #endif
 
 private:
+    const char* hostname;
     WiFiMulti wifiMulti;
     IPAddress ipAddress;
     WiFiClient espClient;
