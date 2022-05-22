@@ -25,7 +25,7 @@ void SimpleEspNetworkServices::startWifi() {
 
     Serial.print("Pripojuji k WiFi ... ");
     WiFi.setAutoReconnect(true);
-    WiFi.setHostname(NETWORK_HOSTNAME);
+    WiFi.setHostname(this->hostname);
     
     WiFi.enableSTA(true);
     WiFi.mode(WIFI_STA);
