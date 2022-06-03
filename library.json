@@ -1,6 +1,6 @@
 {
     "name": "SimpleEspNetworkServices",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Common used network services used in from-scratch apps",
     "keywords": "wifi, mqtt, ota",
     "repository":
