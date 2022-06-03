@@ -16,8 +16,8 @@ void SimpleEspNetworkServices::begin() {
     #endif
 }
 
-void SimpleEspNetworkServices::setHostname(const char* hostname) {
-    this->hostname = hostname;
+void SimpleEspNetworkServices::setHostname(const char* param_hostname) {
+    this->hostname = param_hostname;
 }
 #ifdef NETWORK_HOSTNAME
 void SimpleEspNetworkServices::startWifi() {

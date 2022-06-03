@@ -34,7 +34,7 @@ public:
     void loop();
     bool isWifiConnected();
     IPAddress getIpAddress();
-    void setHostname(const char* hostname);
+    void setHostname(const char* param_hostname);
     const char* getHostname();
     #ifndef NETWORK_DISABLE_MQTT 
     PubSubClient getPubSubClient();
