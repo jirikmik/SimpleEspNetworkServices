@@ -186,9 +186,6 @@ void SimpleEspNetworkServices::startMqtt() {
     }
 }
 
-void SimpleEspNetworkServices::mqttPublish() {
-    pubsub4
-}
 
 boolean SimpleEspNetworkServices::publish(const char* topic, const char* payload) {
     return pubSubClient.publish(topic, payload);
