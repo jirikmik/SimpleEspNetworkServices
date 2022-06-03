@@ -187,11 +187,11 @@ void SimpleEspNetworkServices::startMqtt() {
 }
 
 
-boolean SimpleEspNetworkServices::publish(const char* topic, const char* payload) {
+boolean SimpleEspNetworkServices::mqttPublish(const char* topic, const char* payload) {
     return pubSubClient.publish(topic, payload);
 }
 
-boolean SimpleEspNetworkServices::publish(const char* topic, const char* payload, boolean retained) {
+boolean SimpleEspNetworkServices::mqttPublish(const char* topic, const char* payload, boolean retained) {
     return pubSubClient.publish(topic, payload, retained);
 }
 #endif
