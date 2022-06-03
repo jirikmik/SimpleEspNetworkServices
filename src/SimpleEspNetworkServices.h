@@ -41,6 +41,8 @@ public:
     void setMqttCallback(MQTT_CALLBACK_SIGNATURE);
     boolean mqttSubscribe(const char* topic);
     boolean mqttUnsubscribe(const char* topic);
+    boolean SimpleEspNetworkServices::publish(const char* topic, const char* payload);
+    boolean SimpleEspNetworkServices::publish(const char* topic, const char* payload, boolean retained);
     #endif
 
 private:
