@@ -163,7 +163,7 @@ void SimpleEspNetworkServices::startMqtt() {
     while (!pubSubClient.connected()) {
         Serial.print("Pripojuji k MQTT ... ");
 
-        if (pubSubClient.connect(NETWORK_HOSTNAME, NETWORK_MQTT_USERNAME, NETWORK_MQTT_PASSWORD)) {
+        if (pubSubClient.connect(this->hostname, NETWORK_MQTT_USERNAME, NETWORK_MQTT_PASSWORD)) {
 
             Serial.println("connected");
 
