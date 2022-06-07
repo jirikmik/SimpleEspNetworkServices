@@ -1,5 +1,5 @@
 #include "simpleespnetworkservices.h"
-
+#include "appconfig.h"
 WiFiMulti wifiMulti;
 
 SimpleEspNetworkServices::SimpleEspNetworkServices() {
@@ -167,8 +167,10 @@ void SimpleEspNetworkServices::startMqtt() {
 
             Serial.println("connected");
 
-            // pubSubClient.subscribe("176/studna_spodni/switch/ventil1");
-            // pubSubClient.subscribe("#");
+            if (mqttCallbackSaved) {
+                pubSubClient.setCallback(mqttCallback);
+            }
+
         } else {
 
             Serial.print("failed with state ");
@@ -230,7 +232,11 @@ boolean SimpleEspNetworkServices::mqttUnsubscribe(const char* topic) {
 
 
 void SimpleEspNetworkServices::setMqttCallback(MQTT_CALLBACK_SIGNATURE) {
-    pubSubClient.setCallback(callback);
+    if (!mqttCallbackSaved) {
+        mqttCallback = callback;
+    }
+    pubSubClient.setCallback(mqttCallback);
+    
 }
 
 
@@ -242,7 +248,7 @@ PubSubClient SimpleEspNetworkServices::getPubSubClient() {
 IPAddress SimpleEspNetworkServices::getIpAddress() {
     return ipAddress;
 }
-
+/*
 void SimpleEspNetworkServices::mqttCallback(char *topic, byte *payload, unsigned int length)
 {
 
@@ -259,3 +265,4 @@ void SimpleEspNetworkServices::mqttCallback(char *topic, byte *payload, unsigned
   Serial.println("-----------------------");
 
 }
+*/

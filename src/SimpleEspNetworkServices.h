@@ -60,7 +60,11 @@ private:
     #ifndef NETWORK_DISABLE_MQTT 
     void startMqtt();
     #endif
-    void static mqttCallback(char *topic, byte *payload, unsigned int length);
+    //void static mqttCallback(char *topic, byte *payload, unsigned int length);
+    //void (*mqttCallback)(char *topic, byte *payload, unsigned int length);
+    std::function<void(char*, uint8_t*, unsigned int)> mqttCallback;
+    bool mqttCallbackSaved = false;
+
 };
 
 #endif
