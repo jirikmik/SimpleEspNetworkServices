@@ -1,5 +1,4 @@
 #include "simpleespnetworkservices.h"
-#include "appconfig.h"
 WiFiMulti wifiMulti;
 
 SimpleEspNetworkServices::SimpleEspNetworkServices() {
