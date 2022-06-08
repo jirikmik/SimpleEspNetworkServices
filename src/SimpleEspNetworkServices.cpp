@@ -104,19 +104,20 @@ void SimpleEspNetworkServices::startOta() {
     ArduinoOTA.setPassword(NETWORK_OTA_PASSWORD);
 
     ArduinoOTA.onStart([]()
-                        {
-    String type;
-    if (ArduinoOTA.getCommand() == U_FLASH)
-    {
-        type = "sketch";
-    }
-    else
-    { // U_SPIFFS
-        type = "filesystem";
-    }
+        {
+            String type;
+            if (ArduinoOTA.getCommand() == U_FLASH)
+            {
+                type = "sketch";
+            }
+            else
+            { // U_SPIFFS
+                type = "filesystem";
+            }
 
-    // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
-    Serial.println("Start updating " + type); });
+            // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
+            Serial.println("Start updating " + type); 
+        });
     ArduinoOTA.onEnd([]()
                     { Serial.println("\nEnd"); });
     ArduinoOTA.onProgress([](unsigned int progress, unsigned int total)
@@ -252,6 +253,7 @@ boolean SimpleEspNetworkServices::mqttSubscribe(const char* topic) {
 }
 
 boolean SimpleEspNetworkServices::mqttUnsubscribe(const char* topic) {
+    removeMqttSubscribedTopic(topic);
     return pubSubClient.unsubscribe(topic);
 }
 
@@ -273,6 +275,17 @@ bool SimpleEspNetworkServices::addMqttSubscribedTopic(const char* topic) {
         }
     }
     return false;
+}
+
+bool SimpleEspNetworkServices::removeMqttSubscribedTopic(const char* topic) {
+
+    for (int i=0; i<MQTT_TOPICS_MAX_NUM; i++) {
+        if (mqttSubscribedTopics[i].c_str() == "") {
+            mqttSubscribedTopics[i] = "";
+            //return true;
+        }
+    }
+    return true;
 }
 
 void SimpleEspNetworkServices::initializeMqttSubscribedTopic() {

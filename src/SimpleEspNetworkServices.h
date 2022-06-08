@@ -24,7 +24,7 @@
 #include <PubSubClient.h>
 #endif
 
-#define NETWORKING_LIB_VERSION 2022060801
+#define NETWORKING_LIB_VERSION 2022060802
 
 #ifndef MQTT_TOPICS_MAX_NUM 
 #define MQTT_TOPICS_MAX_NUM 5
@@ -71,6 +71,7 @@ private:
     bool mqttCallbackSaved = false;
     void initializeMqttSubscribedTopic();
     bool addMqttSubscribedTopic(const char* topic);
+    bool removeMqttSubscribedTopic(const char* topic);
     String mqttSubscribedTopics[MQTT_TOPICS_MAX_NUM ];
 
 };
