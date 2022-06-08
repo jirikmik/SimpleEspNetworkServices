@@ -24,7 +24,11 @@
 #include <PubSubClient.h>
 #endif
 
-#define NETWORKING_LIB_VERSION 2022051301
+#define NETWORKING_LIB_VERSION 2022060801
+
+#ifndef MQTT_TOPICS_MAX_NUM 
+#define MQTT_TOPICS_MAX_NUM 5
+#endif
 
 class SimpleEspNetworkServices {
 
@@ -43,6 +47,7 @@ public:
     boolean mqttUnsubscribe(const char* topic);
     boolean mqttPublish(const char* topic, const char* payload);
     boolean mqttPublish(const char* topic, const char* payload, boolean retained);
+    void mqttSetSubscribedTopics(const char* topics[20]);
     #endif
 
 private:
@@ -64,6 +69,9 @@ private:
     //void (*mqttCallback)(char *topic, byte *payload, unsigned int length);
     std::function<void(char*, uint8_t*, unsigned int)> mqttCallback;
     bool mqttCallbackSaved = false;
+    void initializeMqttSubscribedTopic();
+    bool addMqttSubscribedTopic(const char* topic);
+    String mqttSubscribedTopics[MQTT_TOPICS_MAX_NUM ];
 
 };
 

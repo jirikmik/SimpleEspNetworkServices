@@ -3,6 +3,7 @@ WiFiMulti wifiMulti;
 
 SimpleEspNetworkServices::SimpleEspNetworkServices() {
     this->hostname = NETWORK_HOSTNAME;
+    initializeMqttSubscribedTopic();
 }
 
 void SimpleEspNetworkServices::begin() {
@@ -170,6 +171,13 @@ void SimpleEspNetworkServices::startMqtt() {
                 pubSubClient.setCallback(mqttCallback);
             }
 
+            for (int i=0; i<MQTT_TOPICS_MAX_NUM; i++) {
+                if (mqttSubscribedTopics[i] != "") {
+                    pubSubClient.subscribe(mqttSubscribedTopics[i].c_str());
+                    
+                }
+            }
+
         } else {
 
             Serial.print("failed with state ");
@@ -187,8 +195,16 @@ void SimpleEspNetworkServices::startMqtt() {
     }
 }
 
+/*
+void SimpleEspNetworkServices::mqttSetSubscribedTopics(const char* topics[20]) {
+    
+    //mqttSubscribedTopics = topics;
+}
+*/
+
 
 boolean SimpleEspNetworkServices::mqttPublish(const char* topic, const char* payload) {
+    
     return pubSubClient.publish(topic, payload);
 }
 
@@ -222,7 +238,17 @@ bool SimpleEspNetworkServices::isWifiConnected() {
 }
 #ifndef NETWORK_DISABLE_MQTT 
 boolean SimpleEspNetworkServices::mqttSubscribe(const char* topic) {
-    return pubSubClient.subscribe(topic);
+    
+    if (pubSubClient.subscribe(topic)) {
+        if (addMqttSubscribedTopic(topic)) {
+            return true;
+        } else {
+            pubSubClient.unsubscribe(topic);
+            return false;
+        }
+    } else {
+        return false;
+    }
 }
 
 boolean SimpleEspNetworkServices::mqttUnsubscribe(const char* topic) {
@@ -236,6 +262,23 @@ void SimpleEspNetworkServices::setMqttCallback(MQTT_CALLBACK_SIGNATURE) {
     }
     pubSubClient.setCallback(mqttCallback);
     
+}
+
+bool SimpleEspNetworkServices::addMqttSubscribedTopic(const char* topic) {
+
+    for (int i=0; i<MQTT_TOPICS_MAX_NUM; i++) {
+        if (mqttSubscribedTopics[i] == "") {
+            mqttSubscribedTopics[i] = String(topic);
+            return true;
+        }
+    }
+    return false;
+}
+
+void SimpleEspNetworkServices::initializeMqttSubscribedTopic() {
+    for (int i=0; i<MQTT_TOPICS_MAX_NUM; i++) {
+        mqttSubscribedTopics[i] = "";
+    }
 }
 
 
