@@ -157,7 +157,17 @@ void SimpleEspNetworkServices::startOta() {
 void SimpleEspNetworkServices::startMqtt() {
     
     pubSubClient.setClient(espClient);
+
+    #ifdef NETWORK_MQTT_SERVER_IP
+    IPAddress mqttServerIp;
+    mqttServerIp.fromString(NETWORK_MQTT_SERVER_IP);
+    pubSubClient.setServer(mqttServerIp, NETWORK_MQTT_PORT);
+    #else
     pubSubClient.setServer(NETWORK_MQTT_SERVER, NETWORK_MQTT_PORT);
+    #endif
+
+
+    
     
 
     uint8_t connection_counter = 0;
