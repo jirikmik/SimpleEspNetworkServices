@@ -158,13 +158,7 @@ void SimpleEspNetworkServices::startMqtt() {
     
     pubSubClient.setClient(espClient);
 
-    #ifdef NETWORK_MQTT_SERVER_IP
-    IPAddress mqttServerIp;
-    mqttServerIp.fromString(NETWORK_MQTT_SERVER_IP);
-    pubSubClient.setServer(mqttServerIp, NETWORK_MQTT_PORT);
-    #else
-    pubSubClient.setServer(NETWORK_MQTT_SERVER, NETWORK_MQTT_PORT);
-    #endif
+    
 
 
     
@@ -173,6 +167,18 @@ void SimpleEspNetworkServices::startMqtt() {
     uint8_t connection_counter = 0;
     while (!pubSubClient.connected()) {
         Serial.print("Pripojuji k MQTT ... ");
+
+        #ifdef NETWORK_MQTT_SERVER_IP
+        if (connection_counter < 3) { // if defined server IP at first try to connect to IP and then to hostname
+            IPAddress mqttServerIp;
+            mqttServerIp.fromString(NETWORK_MQTT_SERVER_IP);
+            pubSubClient.setServer(mqttServerIp, NETWORK_MQTT_PORT);
+        } else {
+            pubSubClient.setServer(NETWORK_MQTT_SERVER, NETWORK_MQTT_PORT);
+        }
+        #else
+        pubSubClient.setServer(NETWORK_MQTT_SERVER, NETWORK_MQTT_PORT);
+        #endif
 
         if (pubSubClient.connect(this->hostname, NETWORK_MQTT_USERNAME, NETWORK_MQTT_PASSWORD)) {
 
