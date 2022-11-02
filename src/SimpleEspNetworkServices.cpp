@@ -106,8 +106,8 @@ void SimpleEspNetworkServices::startOta() {
     ArduinoOTA.onStart([]()
         {
 
-            if (timer != NULL) {
-                timerEnd(timer);
+            if (this->timer != NULL) {
+                timerEnd(this->timer);
             }
             String type;
             if (ArduinoOTA.getCommand() == U_FLASH)
@@ -124,8 +124,8 @@ void SimpleEspNetworkServices::startOta() {
         });
     ArduinoOTA.onEnd([]()
                     { 
-                        if (timer != NULL) {
-                            timerAlarmEnable(timer);
+                        if (this->timer != NULL) {
+                            timerAlarmEnable(this->timer);
                         }
                         Serial.println("\nEnd"); 
                     });
@@ -138,8 +138,8 @@ void SimpleEspNetworkServices::startOta() {
     ArduinoOTA.onError([](ota_error_t error)
                      {
 
-                        if (timer != NULL) {
-                            timerAlarmEnable(timer);
+                        if (this->timer != NULL) {
+                            timerAlarmEnable(this->timer);
                         }
                         
     Serial.printf("Error[%u]: ", error);
