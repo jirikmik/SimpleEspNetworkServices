@@ -103,11 +103,11 @@ void SimpleEspNetworkServices::startOta() {
     ArduinoOTA.setHostname(NETWORK_HOSTNAME);
     ArduinoOTA.setPassword(NETWORK_OTA_PASSWORD);
 
-    ArduinoOTA.onStart([]()
+    ArduinoOTA.onStart([this]()
         {
 
-            if (this->timer != NULL) {
-                timerEnd(this->timer);
+            if (timer != NULL) {
+                timerEnd(timer);
             }
             String type;
             if (ArduinoOTA.getCommand() == U_FLASH)
@@ -122,10 +122,10 @@ void SimpleEspNetworkServices::startOta() {
             // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
             Serial.println("Start updating " + type); 
         });
-    ArduinoOTA.onEnd([]()
+    ArduinoOTA.onEnd([this]()
                     { 
-                        if (this->timer != NULL) {
-                            timerAlarmEnable(this->timer);
+                        if (timer != NULL) {
+                            timerAlarmEnable(timer);
                         }
                         Serial.println("\nEnd"); 
                     });
@@ -135,11 +135,11 @@ void SimpleEspNetworkServices::startOta() {
                                 );
 
                               
-    ArduinoOTA.onError([](ota_error_t error)
+    ArduinoOTA.onError([this](ota_error_t error)
                      {
 
-                        if (this->timer != NULL) {
-                            timerAlarmEnable(this->timer);
+                        if (timer != NULL) {
+                            timerAlarmEnable(timer);
                         }
                         
     Serial.printf("Error[%u]: ", error);
