@@ -47,6 +47,7 @@ public:
     boolean mqttUnsubscribe(const char* topic);
     boolean mqttPublish(const char* topic, const char* payload);
     boolean mqttPublish(const char* topic, const char* payload, boolean retained);
+    void setTimer(hw_timer_t *);
     void mqttSetSubscribedTopics(const char* topics[20]);
     #endif
 
@@ -69,6 +70,7 @@ private:
     //void (*mqttCallback)(char *topic, byte *payload, unsigned int length);
     std::function<void(char*, uint8_t*, unsigned int)> mqttCallback;
     bool mqttCallbackSaved = false;
+    hw_timer_t * timer = NULL;
     void initializeMqttSubscribedTopic();
     bool addMqttSubscribedTopic(const char* topic);
     bool removeMqttSubscribedTopic(const char* topic);

@@ -105,6 +105,10 @@ void SimpleEspNetworkServices::startOta() {
 
     ArduinoOTA.onStart([]()
         {
+
+            if (timer != NULL) {
+                timerEnd(timer);
+            }
             String type;
             if (ArduinoOTA.getCommand() == U_FLASH)
             {
@@ -119,11 +123,25 @@ void SimpleEspNetworkServices::startOta() {
             Serial.println("Start updating " + type); 
         });
     ArduinoOTA.onEnd([]()
-                    { Serial.println("\nEnd"); });
+                    { 
+                        if (timer != NULL) {
+                            timerAlarmEnable(timer);
+                        }
+                        Serial.println("\nEnd"); 
+                    });
     ArduinoOTA.onProgress([](unsigned int progress, unsigned int total)
-                            { Serial.printf("Progress: %u%%\r", (progress / (total / 100))); });
+                            { 
+                                Serial.printf("Progress: %u%%\r", (progress / (total / 100))); }
+                                );
+
+                              
     ArduinoOTA.onError([](ota_error_t error)
                      {
+
+                        if (timer != NULL) {
+                            timerAlarmEnable(timer);
+                        }
+                        
     Serial.printf("Error[%u]: ", error);
     if (error == OTA_AUTH_ERROR)
     {
@@ -308,6 +326,10 @@ void SimpleEspNetworkServices::initializeMqttSubscribedTopic() {
     for (int i=0; i<MQTT_TOPICS_MAX_NUM; i++) {
         mqttSubscribedTopics[i] = "";
     }
+}
+
+void SimpleEspNetworkServices::setTimer(hw_timer_t * param_timer) {
+    timer = param_timer;
 }
 
 
