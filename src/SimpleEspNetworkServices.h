@@ -38,6 +38,8 @@ public:
     void loop();
     bool isWifiConnected();
     IPAddress getIpAddress();
+    uint8_t getWifiRssi();
+    String getWifiSsid();
     void setHostname(const char* param_hostname);
     const char* getHostname();
     #ifndef NETWORK_DISABLE_MQTT 
@@ -55,6 +57,8 @@ private:
     const char* hostname;
     WiFiMulti wifiMulti;
     IPAddress ipAddress;
+    int8_t wifiRssi;
+    String wifiSsid;
     WiFiClient espClient;
     #ifndef NETWORK_DISABLE_MQTT 
     PubSubClient pubSubClient;

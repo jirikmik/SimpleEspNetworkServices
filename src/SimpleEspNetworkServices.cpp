@@ -80,6 +80,8 @@ void SimpleEspNetworkServices::startWifi() {
     Serial.println(".. pripojeno :-)");
 
     ipAddress = WiFi.localIP();
+    wifiRssi = WiFi.RSSI();
+    wifiSsid = WiFi.SSID();
     Serial.print("IP: ");
     Serial.println(ipAddress);
     //Serial.println(WiFi.getHostname());
@@ -87,7 +89,7 @@ void SimpleEspNetworkServices::startWifi() {
     Serial.print("Hostname: ");
     Serial.println(WiFi.getHostname());
 
-    if (MDNS.begin("ESP32-meteostanice"))
+    if (MDNS.begin(NETWORK_HOSTNAME))
     {
         Serial.println("MDNS responder je zapnuty.");
     }
