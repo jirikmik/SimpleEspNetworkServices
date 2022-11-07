@@ -344,7 +344,7 @@ IPAddress SimpleEspNetworkServices::getIpAddress() {
     return ipAddress;
 }
 
-uint8_t SimpleEspNetworkServices::getWifiRssi() {
+int8_t SimpleEspNetworkServices::getWifiRssi() {
     return wifiRssi;
 }
 

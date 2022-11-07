@@ -38,7 +38,7 @@ public:
     void loop();
     bool isWifiConnected();
     IPAddress getIpAddress();
-    uint8_t getWifiRssi();
+    int8_t getWifiRssi();
     String getWifiSsid();
     void setHostname(const char* param_hostname);
     const char* getHostname();
