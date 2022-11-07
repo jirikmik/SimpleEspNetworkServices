@@ -343,6 +343,14 @@ PubSubClient SimpleEspNetworkServices::getPubSubClient() {
 IPAddress SimpleEspNetworkServices::getIpAddress() {
     return ipAddress;
 }
+
+uint8_t SimpleEspNetworkServices::getWifiRssi() {
+    return wifiRssi;
+}
+
+String SimpleEspNetworkServices::getWifiSsid() {
+    return wifiSsid;
+}
 /*
 void SimpleEspNetworkServices::mqttCallback(char *topic, byte *payload, unsigned int length)
 {
